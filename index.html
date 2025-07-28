@@ -4,8 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Acapella Aliens</title>
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
+  <h1 class="hidden">Acapella Aliens Music Mixer</h1>
+  <h2>Acapella Aliens</h2>
+  <main>
+    <h2 class="hidden">Audio Tracks</h2>
+    <audio src="audio/Boxer.mp3"></audio>
+
+    <!-- add some images to click on and play audio -->
+    <section id="alien-art">
+        <img data-trackref="" src="images/boxer." alt="album art" class="track-ref">
+        <img data-trackref="" src="images/" alt="album art" class="track-ref">
+        <img data-trackref="" src="images/" alt="album art" class="track-ref">
+        <img data-trackref="" src="images/" alt="album art" class="track-ref">
+        <img data-trackref="" src="images/" alt="album art" class="track-ref">
     
+    </section>
+
+    <section class="audio-controls">
+      <button id="playButton">PLAY</button>
+      <button id="pauseButton">PAUSE</button>
+      <button id="rewindButton">REWIND</button>
+
+      <input id="volumeControl" type="range" min="0" max="100" step="1">
+
+    </section>
+  </main>
+  <script src="js/main.js"></script>
 </body>
 </html>
