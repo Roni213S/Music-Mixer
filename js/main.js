@@ -1,33 +1,54 @@
 const   covers = document.querySelectorAll("#alien-art img"),
-        audioel = document.querySelector('audio'),
         playbtn = document.querySelector('#playButton'),
         pausebtn = document.querySelector('#pauseButton'),
         rewindbtn = document.querySelector('#rewindButton'),
         vol = document.querySelector('#volumeControl');
 
 
-function loadAudio() {
-    let currentSrc = `audio/${this.dataset.trackref}.mp3`;
-    audioel.src = currentSrc;
-    audioel.load();
-    playAudio();
+function playAudio() {
+    document.querySelectorAll(".target-zone .label").forEach(label => {
+    if (label.sound) {
+        if (label.sound.paused) {
+            label.sound.play();
+        }
+    } 
+    
+    else {
+      label.sound = new Audio("audio/" + label.dataset.trackref + ".mp3");
+      label.sound.loop = true;
+      label.sound.play();
+    }
+  });
 }
 
-function playAudio() { 
-    audioel.play(); 
-}
-function restartAudio() { 
-    audioel.currentTime = 0; 
-    playAudio(); 
+function restartAudio() {
+    document.querySelectorAll(".target-zone .label").forEach(label => {
+    if (label.sound) {
+        label.sound.currentTime = 0;
+    }
+    });
 }
 
 function pauseAudio() { 
-    audioel.pause(); 
+    document.querySelectorAll(".target-zone .label").forEach(label => {
+    if (label.sound) {
+        label.sound.pause();
+    }
+    });
 }
 
 function setVolume() {
-    console.log(this.value);
-    audioel.volume = (this.value/100); 
+    const volume = this.value / 100;
+
+    document.querySelectorAll(".target-zone .label").forEach(label => {
+    if (label.sound) {
+        label.sound.volume = volume;
+    }
+    });
+}
+
+function resetAudio() {
+    
 }
 
 covers.forEach(cover => cover.addEventListener('click', loadAudio));
@@ -57,7 +78,7 @@ function dragOver(event) {
 
 function drop(event) {
     event.preventDefault();
-    if (this.children.length === 0) {
+    if (this.children.length == 0) {
         this.appendChild(currentDraggedElement);
         currentDraggedElement = null;
     }
